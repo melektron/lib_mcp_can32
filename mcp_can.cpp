@@ -818,6 +818,20 @@ MCP_CAN::MCP_CAN(INT8U _CS)
 }
 
 /*********************************************************************************************************
+** Function name:           MCP_CAN
+** Descriptions:            Public function to declare CAN class and all SPI pins.
+*********************************************************************************************************/
+MCP_CAN::MCP_CAN(INT8U _CS, INT8U _SCK, INT8U _MISO, INT8U _MOSI)
+{
+    MCPCS = _CS;
+    MCPSCK = _SCK;
+    MCPMISO = _MISO;
+    MCPMOSI = _MOSI;
+    MCP2515_UNSELECT();
+    pinMode(MCPCS, OUTPUT);
+}
+
+/*********************************************************************************************************
 ** Function name:           begin
 ** Descriptions:            Public function to declare controller initialization parameters.
 *********************************************************************************************************/
@@ -825,7 +839,7 @@ INT8U MCP_CAN::begin(INT8U idmodeset, INT8U speedset, INT8U clockset)
 {
     INT8U res;
 
-    SPI.begin();
+    SPI.begin(MCPSCK, MCPMISO, MCPMOSI, MCPCS);
     res = mcp2515_init(idmodeset, speedset, clockset);
     if (res == MCP2515_OK)
         return CAN_OK;

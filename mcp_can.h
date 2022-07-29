@@ -39,6 +39,9 @@ class MCP_CAN
     INT8U   m_nRtr;                                                     // Remote request flag
     INT8U   m_nfilhit;                                                  // The number of the filter that matched the message
     INT8U   MCPCS;                                                      // Chip Select pin number
+    INT8S   MCPSCK = -1;                                                // SCK pin number
+    INT8S   MCPMISO = -1;                                               // MISO pin number
+    INT8S   MCPMOSI = -1;                                               // MOSI pin number
     INT8U   mcpMode;                                                    // Mode to return to after configurations are performed.
     
 
@@ -107,6 +110,7 @@ class MCP_CAN
 
 public:
     MCP_CAN(INT8U _CS);
+    MCP_CAN(INT8U _CS, INT8U _SCK, INT8U _MISO, INT8U _MOSI);           // Constructor for custom SCK, MISO, MOSI pins
     INT8U begin(INT8U idmodeset, INT8U speedset, INT8U clockset);       // Initialize controller parameters
     INT8U init_Mask(INT8U num, INT8U ext, INT32U ulData);               // Initialize Mask(s)
     INT8U init_Mask(INT8U num, INT32U ulData);                          // Initialize Mask(s)

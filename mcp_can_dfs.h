@@ -36,6 +36,10 @@
 #define INT8U byte
 #endif
 
+#ifndef INT8S
+#define INT8S char
+#endif
+
 // if print debug information
 #ifndef DEBUG_MODE
 #define DEBUG_MODE 1
