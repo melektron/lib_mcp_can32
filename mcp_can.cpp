@@ -808,20 +808,9 @@ INT8U MCP_CAN::mcp2515_getNextFreeTXBuf(INT8U *txbuf_n)                 /* get N
 
 /*********************************************************************************************************
 ** Function name:           MCP_CAN
-** Descriptions:            Public function to declare CAN class and the /CS pin.
+** Descriptions:            Public function to declare CAN class and the /CS pin (optinally all other SPI pins).
 *********************************************************************************************************/
-MCP_CAN::MCP_CAN(INT8U _CS)
-{
-    MCPCS = _CS;
-    MCP2515_UNSELECT();
-    pinMode(MCPCS, OUTPUT);
-}
-
-/*********************************************************************************************************
-** Function name:           MCP_CAN
-** Descriptions:            Public function to declare CAN class and all SPI pins.
-*********************************************************************************************************/
-MCP_CAN::MCP_CAN(INT8U _CS, INT8U _SCK, INT8U _MISO, INT8U _MOSI)
+MCP_CAN::MCP_CAN(INT8U _CS, INT8S _SCK, INT8S _MISO, INT8S _MOSI)
 {
     MCPCS = _CS;
     MCPSCK = _SCK;
